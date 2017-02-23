@@ -20,3 +20,7 @@ class AuthError(Exception):
 class InvalidInquiry(Exception):
     """Raised ketika user salah memasukkan inquiry"""
     pass
+
+class BankNotSupported(Exception):
+    """Bila bank tidak disupport oleh portalpulsa."""
+    pass
