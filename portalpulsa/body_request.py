@@ -1,6 +1,7 @@
 """body_request, class untuk data request yang akan dikirim ke server"""
-from portalpulsa.exceptions import ParamsNotFound, InvalidInquiry
+from portalpulsa.exceptions import BankNotSupported, InvalidInquiry
 from portalpulsa.inquiry import Inquiry
+from portalpulsa.bank import Bank
 
 class BodyRequestBase(object):
     """Base body_request"""
@@ -32,4 +33,13 @@ class BodyRequestDeposit(BodyRequestBase):
     inquiry = Inquiry.DEPOSIT
 
     def __init__(self, bank, nominal, inquiry=None):
-        pass
+        self.bank = self._validate_bank(bank)
+
+    @classmethod
+    def _validate_bank(cls, bank):
+        """validasi bank, harus sesuai yang ada 
+        di class Bank"""
+
+        if not bank in Bank.__dict__.values():
+            raise BankNotSupported("Bank belum disupport oleh portalpulsa")
+        return bank
