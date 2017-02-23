@@ -20,3 +20,7 @@ def test_validate_nominal_not_integer():
 @tools.raises(ValueError)
 def test_validate_nominal_lebih_kecil_dari_10000():
     dep = BodyRequestDeposit(Bank.BCA, 7000)
+
+@tools.raises(ValueError)
+def test_validate_nominal_lebih_besar_dari_1000000000():
+    dep = BodyRequestDeposit(Bank.BCA, 1000001000)

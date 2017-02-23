@@ -58,4 +58,7 @@ class BodyRequestDeposit(BodyRequestBase):
         if nominal < 10000:
             raise ValueError("Nominal harus lebih besar dari 10.000")
 
+        if nominal > 1000000000:
+            raise ValueError("Nominal harus lebih kecil dari 1.000.000.000")
+
         return nominal
