@@ -5,8 +5,11 @@ from portalpulsa.inquiry import Inquiry
 class BodyRequestBase(object):
     """Base body_request"""
 
+    inquiry = None
+
     def __init__(self, inquiry):
-        self.inquiry = self._validate_inquiry(inquiry)
+        if not self.inquiry:
+            self.inquiry = self._validate_inquiry(inquiry)
 
     @classmethod
     def _validate_inquiry(cls, inquiry):
@@ -15,3 +18,11 @@ class BodyRequestBase(object):
         if not inquiry in Inquiry.__dict__.values():
             raise InvalidInquiry('Inquiry salah')
         return inquiry
+
+class BodyRequestSaldo(BodyRequestBase):
+    """Body_request untuk saldo"""
+
+    inquiry = Inquiry.SALDO
+
+    def __init__(self, inquiry=None):
+        pass
