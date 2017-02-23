@@ -54,4 +54,8 @@ class BodyRequestDeposit(BodyRequestBase):
         """
         if not isinstance(nominal, int):
             raise ValueError("harus berupa integer")
+
+        if nominal < 10000:
+            raise ValueError("Nominal harus lebih besar dari 10.000")
+
         return nominal
