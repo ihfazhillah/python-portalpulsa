@@ -12,4 +12,7 @@ def test_inquiry():
 @tools.raises(BankNotSupported)
 def test_validate_bank():
     dep = BodyRequestDeposit('link', 10000)
-    
+
+@tools.raises(ValueError)
+def test_validate_nominal_not_integer():
+    dep = BodyRequestDeposit(Bank.BCA, 'ini bukan integer')

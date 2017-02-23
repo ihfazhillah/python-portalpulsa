@@ -34,6 +34,7 @@ class BodyRequestDeposit(BodyRequestBase):
 
     def __init__(self, bank, nominal, inquiry=None):
         self.bank = self._validate_bank(bank)
+        self.nominal = self._validate_nominal(nominal)
 
     @classmethod
     def _validate_bank(cls, bank):
@@ -43,3 +44,14 @@ class BodyRequestDeposit(BodyRequestBase):
         if not bank in Bank.__dict__.values():
             raise BankNotSupported("Bank belum disupport oleh portalpulsa")
         return bank
+
+    @classmethod
+    def _validate_nominal(cls, nominal):
+        """validasi nominal,
+        1. integer
+        2. kelipatan 1000
+        3. min 10000 max 1000000000
+        """
+        if not isinstance(nominal, int):
+            raise ValueError("harus berupa integer")
+        return nominal
