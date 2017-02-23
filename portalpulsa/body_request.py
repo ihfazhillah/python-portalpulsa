@@ -65,3 +65,10 @@ class BodyRequestDeposit(BodyRequestBase):
             raise ValueError("Nominal harus kelipatan 1.000") 
 
         return nominal
+
+class BodyRequestHarga(BodyRequestBase):
+
+    inquiry = Inquiry.HARGA
+
+    def __init__(self, code, inquiry=None):
+        self.code = code
