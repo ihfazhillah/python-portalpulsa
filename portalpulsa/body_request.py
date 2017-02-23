@@ -28,4 +28,8 @@ class BodyRequestSaldo(BodyRequestBase):
         pass
 
 class BodyRequestDeposit(BodyRequestBase):
-    pass
+
+    inquiry = Inquiry.DEPOSIT
+
+    def __init__(self, bank, nominal, inquiry=None):
+        pass
