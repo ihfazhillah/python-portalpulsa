@@ -72,3 +72,10 @@ class BodyRequestHarga(BodyRequestBase):
 
     def __init__(self, code, inquiry=None):
         self.code = code
+
+class BodyRequestTrx(BodyRequestBase):
+
+    inquiry = Inquiry.STATUS
+
+    def __init__(self, trxid):
+        self.trxid = trxid
